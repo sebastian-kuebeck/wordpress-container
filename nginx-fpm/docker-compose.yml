@@ -1,0 +1,38 @@
+# See https://docs.docker.com/compose/ for details
+
+services:
+  mysql:
+    image: mysql:8.0
+    env_file: .env
+    environment:
+      - MYSQL_DATABASE=wordpress
+    volumes:
+      - .volumes/dbdata/:/var/lib/mysql
+    command: '--default-authentication-plugin=mysql_native_password'
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      start_period: 5s
+      interval: 5s
+      timeout: 5s
+      retries: 10
+  wordpress:
+    depends_on:
+      mysql:
+        condition: service_healthy
+    image: wordpress-nginx-fpm
+    env_file: .env
+    environment:
+      - WORDPRESS_DB_HOST=mysql:3306
+      - WORDPRESS_DB_USER=$MYSQL_USER
+      - WORDPRESS_DB_PASSWORD=$MYSQL_PASSWORD
+      - WORDPRESS_DB_NAME=wordpress
+      - WP_URL=http://localhost:8080
+      - WP_TITLE=localhost
+      - WP_LOCALE=de_DE
+      - WP_ADMIN_USER=$ADMIN_USER
+      - WP_ADMIN_PASSWORD=$ADMIN_PASSWORD
+      - WP_ADMIN_EMAIL=$ADMIN_EMAIL        
+    ports:
+      - "8080:8080"
+    volumes:
+      - .volumes/wordpress/:/var/www/html

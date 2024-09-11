@@ -1,0 +1,70 @@
+# see: https://encab.readthedocs.io/en/latest/configuration.html
+encab:
+  halt_on_exit: false # halt execution if main exits
+  logformat: "%(program)s %(levelname)-5.5s: %(message)s" # custom log format
+  dry_run: false # dry run only
+  debug: false # no debug output
+extensions:
+  validation:
+    enabled: true
+    settings:
+        variables:
+          WORDPRESS_DB_NAME:
+            required: true
+          WORDPRESS_DB_USER:
+            required: true
+          WORDPRESS_DB_PASSWORD:
+            required: true
+          WORDPRESS_DB_USER:
+            required: true
+          WORDPRESS_DB_HOST:
+            required: true
+          WP_ADMIN_USER:
+            required: true
+          WP_ADMIN_PASSWORD:
+            required: true
+          WP_ADMIN_EMAIL:
+            required: true
+          WP_TITLE:
+            required: true
+          WP_URL:
+            required: true
+          WP_LOCALE:
+            required: true
+  log_sanitizer:
+    enabled: true
+    settings:
+      override: true
+      patterns:
+          - WP_ADMIN_PASSWORD
+          - WORDPRESS_DB_PASSWORD
+          - WORDPRESS_AUTH_KEY
+          - SECURE_AUTH_KEY
+          - WORDPRESS_SECURE_AUTH_KEY
+          - LOGGED_IN_KEY
+          - WORDPRESS_NONCE_KEY
+
+  log_collector:
+    enabled: true
+    settings:
+      sources:
+        cron_log:
+          path: /var/log/cron.log
+
+  startup_script:
+    enabled: true
+    settings:
+      sh:
+        startup.sh
+
+programs:
+  cron:
+    command:
+      cron -f -l -L 15
+  fpm:
+    restart_delay: 1
+    command:
+      php-fpm -F
+  main:
+    command:
+      nginx -g 'daemon off;'

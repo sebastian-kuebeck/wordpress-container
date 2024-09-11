@@ -1,0 +1,8 @@
+.volumes
+.env
+*~
+.DS_Store
+.coverage*
+.vscode/
+.env
+.cache/
