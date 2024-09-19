@@ -11,28 +11,35 @@ Example for an integrated [Docker Container](https://www.docker.com/resources/wh
 
 ## Installation
 
-1. Install Docker, see (Install Docker Engine)[https://docs.docker.com/engine/install/]
+1. Install Docker, see [Install Docker Engine](https://docs.docker.com/engine/install/)
 
-2. Copy `nginx-fpm/.env.template` to `nginx-fpm/.env`
-
-```bash
-    $ cp nginx-fpm/.env.template nginx-fpm/.env
-```
-3. Fill out confidantial parameter in `nginx-fpm/.env`
-
-4. Build container
+2. Clone container
 
 ```bash
-    $ make build-nginx-fpm
+    git clone https://github.com/sebastian-kuebeck/wordpress-container.git
 ```
 
-5. Start container and database
+3. Copy `nginx-fpm/.env.template` to `nginx-fpm/.env`
 
 ```bash
-    $ make run-nginx-fpm
+    cp nginx-fpm/.env.template nginx-fpm/.env
 ```
 
-6. Wait until Wordpress is installed and containers have started 
+4. Fill out confidantial parameter in [nginx-fpm/.env](https://github.com/sebastian-kuebeck/wordpress-container/blob/main/nginx-fpm/.env.template)
+
+5. Build container
+
+```bash
+    make build-nginx-fpm
+```
+
+6. Start container and database
+
+```bash
+    make run-nginx-fpm
+```
+
+7. Wait until Wordpress is installed and containers have started 
 
 ```logs
     wordpress-1  | encab INFO : encab 0.1.5
@@ -47,9 +54,9 @@ Example for an integrated [Docker Container](https://www.docker.com/resources/wh
     wordpress-1  | fpm ERROR: [10-Sep-2024 19:49:40] NOTICE: ready to handle connections
 ```
 
-7. View running Wordpress (http://localhost:8080/)
+8. View running Wordpress http://localhost:8080/
 
-8. Log into Wordpress (http://localhost:8080/wp-admin/)
+9. Log into Wordpress http://localhost:8080/wp-admin/
 
    use credentials from `nginx-fpm/.env`
 
