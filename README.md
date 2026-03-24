@@ -11,35 +11,52 @@ Example for an integrated [Docker Container](https://www.docker.com/resources/wh
 
 ## Installation
 
-1. Install Docker, see [Install Docker Engine](https://docs.docker.com/engine/install/)
+1. **Install Docker, see [Install Docker Engine](https://docs.docker.com/engine/install/)**
 
-2. Clone container
+2. **Clone container**
 
 ```bash
     git clone https://github.com/sebastian-kuebeck/wordpress-container.git
 ```
 
-3. Copy `nginx-fpm/.env.template` to `nginx-fpm/.env`
+3. **Copy `nginx-fpm/.env.template` to `nginx-fpm/.env`**
 
 ```bash
     cp nginx-fpm/.env.template nginx-fpm/.env
 ```
 
-4. Fill out confidantial parameter in [nginx-fpm/.env](https://github.com/sebastian-kuebeck/wordpress-container/blob/main/nginx-fpm/.env.template)
+4. **Fill out confidantial parameter in [nginx-fpm/.env](https://github.com/sebastian-kuebeck/wordpress-container/blob/main/nginx-fpm/.env.template)**
 
-5. Build container
+5. **Preinstall plugins (optional)**
+
+Add plugins that you want to have installed once the container starts up the first time.
+
+Edit the following file: 
+
+`nginx-fpm/scripts/preinstall_modules.sh`
+
+Add the plugin install commands
+
+Example:
+
+```bash
+    wp-cli plugin install bbpress --activate
+```
+see [Wordpress CLI documentation](https://developer.wordpress.org/cli/commands/plugin/install/) for details.
+
+6. **Build container**
 
 ```bash
     make build-nginx-fpm
 ```
 
-6. Start container and database
+7. **Start container and database**
 
 ```bash
     make run-nginx-fpm
 ```
 
-7. Wait until Wordpress is installed and containers have started 
+8. **Wait until containers have started and Wordpress has installed itself...**
 
 ```logs
     wordpress-1  | encab INFO : encab 1.0.4
@@ -54,9 +71,9 @@ Example for an integrated [Docker Container](https://www.docker.com/resources/wh
     wordpress-1  | fpm ERROR: [10-Sep-2024 19:49:40] NOTICE: ready to handle connections
 ```
 
-8. View running Wordpress http://localhost:8080/
+9. **View running Wordpress http://localhost:8080/**
 
-9. Log into Wordpress http://localhost:8080/wp-admin/
+10. **Log into Wordpress http://localhost:8080/wp-admin/**
 
    use credentials from `nginx-fpm/.env`
 

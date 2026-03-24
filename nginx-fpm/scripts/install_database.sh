@@ -34,6 +34,8 @@ if ! wp-cli core is-installed ; then
     done
 
     echo "Database successfully installed."
+
+    source preinstall_modules.sh
 else
     echo "Database already installed."
 fi

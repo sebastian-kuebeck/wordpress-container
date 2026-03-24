@@ -60,6 +60,7 @@ RUN set -eux; \
 	./scripts/install_configs.sh; \
 	mv scripts/startup.sh /usr/local/bin/; \
 	mv scripts/wp_cli.sh /usr/local/bin/wp-cli; \
+	mv scripts/preinstall_modules.sh /usr/local/bin/; \
 	mv scripts/install_database.sh /usr/local/bin/; \
 	rm -rf scripts configs
 
