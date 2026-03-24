@@ -2,12 +2,12 @@
 
 # Downloads Wordpress from https://wordpress.org and unpacks ist to /usr/source
 #
-# derived from https://github.com/docker-library/wordpress/blob/master/latest/php8.3/fpm/Dockerfile
+# derived from https://github.com/docker-library/wordpress/blob/master/latest/php8.5/fpm/Dockerfile
 
 set -euxo pipefail
 
-version='6.6.2'
-sha1='7acbf69d5fdaf804e3db322bad23b08d2e2e42ec'
+version='6.9.4'
+sha1='018542f4c3e15db0d8e38aaf0fcf1b5dc56dbb79'
 
 curl -o wordpress.tar.gz -fL "https://wordpress.org/wordpress-$version.tar.gz"
 echo "$sha1 *wordpress.tar.gz" | sha1sum -c -

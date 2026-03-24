@@ -2,7 +2,7 @@
 
 # Moves configuration files to their destination
 #
-# derived from https://github.com/docker-library/wordpress/blob/master/latest/php8.3/fpm/Dockerfile
+# derived from https://github.com/docker-library/wordpress/blob/master/latest/php8.5/fpm/Dockerfile
 
 set -euxo pipefail
 

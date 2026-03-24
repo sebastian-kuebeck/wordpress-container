@@ -1,6 +1,6 @@
-# derved from https://github.com/docker-library/wordpress/blob/master/latest/php8.3/fpm/Dockerfile
+# derved from https://github.com/docker-library/wordpress/blob/master/latest/php8.5/fpm/Dockerfile
 
-FROM php:8.3-fpm
+FROM php:8.5-fpm
 
 ENV PATH=$PATH:/root/.local/bin
 
@@ -10,6 +10,7 @@ RUN set -eux; \
 	apt-get install -y --no-install-recommends \
 # Ghostscript is required for rendering PDF previews
 		ghostscript \
+		imagemagick \
 		gnupg \
 		sudo \
 		cron \
@@ -52,7 +53,6 @@ COPY configs configs
 
 RUN set -eux; \
 	chmod a+x scripts/*.sh; \
-	./scripts/install_imagemagic.sh; \
 	./scripts/install_wordpress_cli.sh ; \
 	./scripts/install_wordpress.sh
 

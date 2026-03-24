@@ -3,10 +3,10 @@
 Example for an integrated [Docker Container](https://www.docker.com/resources/what-container/) using the following services and tools:
 
 - [Nginx Web Server](https://nginx.org/)
-- [PHP 8.3](https://www.php.net/releases/8.3/de.php)
+- [PHP 8.5](https://www.php.net/releases/8.5/de.php)
 - [FastCGI Process Manager (FPM)](https://www.php.net/manual/en/install.fpm.php)
-- [Wordpress 6.6.2](https://wordpress.org/news/2024/09/wordpress-6-6-2-maintenance-release/)
-- [Wordpress CLI 2.11.0](https://make.wordpress.org/cli/)
+- [Wordpress 6.9.4](https://wordpress.org/documentation/wordpress-version/version-6-9-4/)
+- [Wordpress CLI 2.12.0](https://make.wordpress.org/cli/)
 - Wordpress Cron Job via [cron](https://wiki.debian.org/cron)
 
 ## Installation
@@ -42,7 +42,7 @@ Example for an integrated [Docker Container](https://www.docker.com/resources/wh
 7. Wait until Wordpress is installed and containers have started 
 
 ```logs
-    wordpress-1  | encab INFO : encab 0.1.5
+    wordpress-1  | encab INFO : encab 1.0.4
     wordpress-1  | encab INFO : Using configuration file /etc/encab.yml, source: Default location.
     wordpress-1  | startup_script/sh INFO : WordPress not found in /var/www/html - copying now...
     wordpress-1  | startup_script/sh INFO : Complete! WordPress has been successfully copied to /var/www/html

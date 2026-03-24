@@ -1,7 +1,7 @@
 <?php
 /**
  * From https://github.com/docker-library/wordpress/blob/master/latest/php8.3/fpm/wp-config-docker.php
- * 
+ *
  * The base configuration for WordPress
  *
  * The wp-config.php creation script uses this file during the installation.
@@ -22,6 +22,7 @@
  * @package WordPress
  */
 
+
 // IMPORTANT: this file needs to stay in-sync with https://github.com/WordPress/WordPress/blob/master/wp-config-sample.php
 // (it gets parsed by the upstream wizard in https://github.com/WordPress/WordPress/blob/f27cb65e1ef25d11b535695a660e7282b98eb742/wp-admin/setup-config.php#L356-L392)
 
@@ -39,6 +40,12 @@ if (!function_exists('getenv_docker')) {
 			return $default;
 		}
 	}
+}
+
+/** Set HTTP_HOST for CLI */
+if ( defined( 'WP_CLI' ) && WP_CLI && ! isset( $_SERVER['HTTP_HOST'] ) ) {
+	$wpUrl = getenv_docker('WP_URL', 'localhost');
+    $_SERVER['HTTP_HOST'] = parse_url($wpUrl)['host'];
 }
 
 // ** Database settings - You can get this info from your web host ** //
@@ -61,13 +68,10 @@ define( 'DB_PASSWORD', getenv_docker('WORDPRESS_DB_PASSWORD', 'example password'
 define( 'DB_HOST', getenv_docker('WORDPRESS_DB_HOST', 'mysql') );
 
 /** Database charset to use in creating database tables. */
-define( 'DB_CHARSET', getenv_docker('WORDPRESS_DB_CHARSET', 'utf8') );
+define( 'DB_CHARSET', getenv_docker('WORDPRESS_DB_CHARSET', 'utf8mb4') );
 
 /** The database collate type. Don't change this if in doubt. */
 define( 'DB_COLLATE', getenv_docker('WORDPRESS_DB_COLLATE', '') );
-
-/** We use our own cron*/
-define( 'DISABLE_WP_CRON', true );
 
 /**#@+
  * Authentication unique keys and salts.
@@ -97,6 +101,12 @@ define( 'NONCE_SALT',       getenv_docker('WORDPRESS_NONCE_SALT',       'put you
  *
  * You can have multiple installations in one database if you give each
  * a unique prefix. Only numbers, letters, and underscores please!
+ *
+ * At the installation time, database tables are created with the specified prefix.
+ * Changing this value after WordPress is installed will make your site think
+ * it has not been installed.
+ *
+ * @link https://developer.wordpress.org/advanced-administration/wordpress/wp-config/#table-prefix
  */
 $table_prefix = getenv_docker('WORDPRESS_TABLE_PREFIX', 'wp_');
 
