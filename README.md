@@ -9,6 +9,19 @@ Example for an integrated [Docker Container](https://www.docker.com/resources/wh
 - [Wordpress CLI 2.12.0](https://make.wordpress.org/cli/)
 - Wordpress Cron Job via [cron](https://wiki.debian.org/cron)
 
+## Features
+
+- runs Wordpress, Wordpress CLI, PHP-FPM and nginx in one container
+- sets up Wordpress configuration, passwords and the database during the first start
+- installs an initial set of plugins during the first start (optional)
+- based on official Wordpress containers
+
+## Use Cases
+
+- testing Wordpress installations with various Wordpress versions and plugins
+- running small Wordpress installations with minimum complexity and operational overhead
+- basis for customized Wordpress containers for special requirements
+
 ## Installation
 
 1. **Install Docker, see [Install Docker Engine](https://docs.docker.com/engine/install/)**
