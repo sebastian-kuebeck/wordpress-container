@@ -44,13 +44,6 @@ extensions:
           - LOGGED_IN_KEY
           - WORDPRESS_NONCE_KEY
 
-  log_collector:
-    enabled: true
-    settings:
-      sources:
-        cron_log:
-          path: /var/log/cron.log
-
   startup_script:
     enabled: true
     settings:
@@ -59,6 +52,7 @@ extensions:
 
 programs:
   cron:
+    restart_delay: 1
     command:
       cron -f -l -L 15
   fpm:

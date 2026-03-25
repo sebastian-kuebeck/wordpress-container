@@ -64,11 +64,10 @@ see [Wordpress CLI documentation](https://developer.wordpress.org/cli/commands/p
     wordpress-1  | startup_script/sh INFO : WordPress not found in /var/www/html - copying now...
     wordpress-1  | startup_script/sh INFO : Complete! WordPress has been successfully copied to /var/www/html
     wordpress-1  | startup_script/sh INFO : No 'wp-config.php' found in /var/www/html, but 'WORDPRESS_...' variables supplied; copying 'wp-config-docker.php' (WORDPRESS_DB_HOST WORDPRESS_DB_NAME WORDPRESS_DB_PASSWORD WORDPRESS_DB_USER)
-    wordpress-1  | startup_script/sh ERROR: PHP Warning:  Undefined array key "HTTP_HOST" in /var/www/html/wp-includes/functions.php on line 6298
-    wordpress-1  | startup_script/sh ERROR: Warning: Undefined array key "HTTP_HOST" in /var/www/html/wp-includes/functions.php on line 6298
     wordpress-1  | startup_script/sh INFO : Database successfully installed.
-    wordpress-1  | fpm ERROR: [10-Sep-2024 19:49:40] NOTICE: fpm is running, pid 65
-    wordpress-1  | fpm ERROR: [10-Sep-2024 19:49:40] NOTICE: ready to handle connections
+    wordpress-1  | startup_script/sh INFO : Modules successfully installed.
+    wordpress-1  | fpm ERROR: [25-Mar-2026 09:44:48] NOTICE: fpm is running, pid 72
+    wordpress-1  | fpm ERROR: [25-Mar-2026 09:44:48] NOTICE: ready to handle connections
 ```
 
 9. **View running Wordpress http://localhost:8080/**
